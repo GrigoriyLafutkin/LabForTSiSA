@@ -59,3 +59,29 @@ void SimulatedAnnealing(const float &a, const float &b)
         std::cout << "N = " << N << " || " << "T = " << T << " || " << "X = " << x1 << " || " << "f(x)" << MyFunc(x1) << std::endl;
     }
 }
+void SimulatedAnnealing(const float &a, const float &b)
+{
+    std::uniform_real_distribution<float> distr(a, b);
+    float x1 = distr(gen);
+    size_t N = 0;
+    float dF = 0;
+    for (float T = 10000; T >= 0.01; T *= 0.95)
+    {
+        for (size_t i = a; i < b; ++i)
+        {
+            float x = FuncRandom(a, b);
+            dF = MyFuncSin5x(x) - MyFuncSin5x(x1);
+            if (dF <= 0)
+            {
+                x1 = x;
+            } else {
+                if (FuncRandom(0, 1) <= Probability(dF, T))
+                {
+                    x1 = x;
+                }
+            }
+        }
+        ++N;
+        std::cout << "N = " << N << " || " << "T = " << T << " || " << "X = " << x1 << " || " << "f(x)" << MyFuncSin5x(x1) << std::endl;
+    }
+}

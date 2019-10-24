@@ -59,7 +59,7 @@ void SimulatedAnnealing(const float &a, const float &b)
         std::cout << "N = " << N << " || " << "T = " << T << " || " << "X = " << x1 << " || " << "f(x)" << MyFunc(x1) << std::endl;
     }
 }
-void SimulatedAnnealing(const float &a, const float &b)
+void SimulatedAnnealingSin5x(const float &a, const float &b)
 {
     std::uniform_real_distribution<float> distr(a, b);
     float x1 = distr(gen);
